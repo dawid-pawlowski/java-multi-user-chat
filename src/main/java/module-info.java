@@ -4,4 +4,5 @@ module app {
 
     opens app to javafx.fxml;
     exports app;
+    exports client;
 }

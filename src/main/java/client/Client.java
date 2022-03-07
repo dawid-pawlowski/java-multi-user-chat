@@ -1,16 +1,15 @@
 package client;
 
 import app.Controller;
-import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 
 import java.io.*;
 import java.net.Socket;
 
 public class Client {
-    private Socket socket;
-    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;
+    private final Socket socket;
+    private final BufferedReader bufferedReader;
+    private final BufferedWriter bufferedWriter;
 
     public Client() throws IOException {
         socket = new Socket("localhost", 1234);
@@ -25,20 +24,27 @@ public class Client {
     }
 
     public void receive(VBox container) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(socket.isConnected()) {
-                    try {
-                        Controller.addMessage(container, bufferedReader.readLine());
-                        //throw new IOException();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        Thread thread = new Thread(() -> {
+            while (socket.isConnected()) {
+                try {
+                    Controller.addMessage(container, bufferedReader.readLine());
+                } catch (IOException e) {
+                    closeConnection();
+                    e.printStackTrace();
                 }
             }
         });
         thread.setDaemon(true);
         thread.start();
+    }
+
+    private void closeConnection() {
+        try {
+            if (socket != null) socket.close();
+            if (bufferedWriter != null) bufferedWriter.close();
+            if (bufferedReader != null) bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

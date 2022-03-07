@@ -43,6 +43,8 @@ public class ClientHandler implements Runnable {
     }
 
     private void closeConnection() {
+        clients.remove(this);
+
         try {
             if (socket != null) socket.close();
             if (bufferedWriter != null) bufferedWriter.close();

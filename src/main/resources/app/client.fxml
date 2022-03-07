@@ -7,23 +7,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
    <children>
-      <VBox layoutX="250.0" layoutY="85.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <content>
+            <VBox fx:id="messageContainer" />
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <ScrollPane fx:id="scrollPane">
-               <content>
-                  <VBox fx:id="messageContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </content>
-            </ScrollPane>
-            <HBox alignment="CENTER">
-               <children>
-                  <TextField fx:id="inputText" />
-                  <Button fx:id="sendButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Send" textAlignment="CENTER" />
-               </children>
-            </HBox>
+            <TextField fx:id="inputText" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Button fx:id="sendButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Send" textAlignment="CENTER" />
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

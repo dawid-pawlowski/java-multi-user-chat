@@ -1,6 +1,0 @@
-module-info.class
-client/Client.class
-app/App.class
-app/Controller.class
-server/Server.class
-app/Controller$1.class
